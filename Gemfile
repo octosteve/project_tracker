@@ -47,5 +47,6 @@ end
 
 # For Heroku
 gem "rails_12factor"
+gem 'puma'
 # For the Prettize
 gem 'bootstrap-sass', '~> 3.3.6'
