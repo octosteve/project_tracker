@@ -5,3 +5,6 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+10.times do |count|
+  Project.create(name: "Project #{count}", github_url: "https://github.com/User#{count}/project#{count}")
+end
