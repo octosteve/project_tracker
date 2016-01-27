@@ -1,0 +1,12 @@
+<h1>Add your project</h1>
+<%= form_for @project do |f| %>
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div>
+    <%= f.label :github_url %>
+    <%= f.url_field :github_url %>
+  </div>
+  <%= f.submit %>
+<% end %>
