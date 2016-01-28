@@ -4,6 +4,7 @@ class ProjectsController < ApplicationController
   end
 
   def new
+    "whatwhatwhat"
     @project = Project.new
     "!!!!!!"
   end
