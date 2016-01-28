@@ -1,13 +1,16 @@
 class ProjectsController < ApplicationController
-  def index
-    @projects = Project.all
-  end
-
   def new
     @project = Project.new
+    "!!!!!!"
+  end
+
+  def something_else
+    "hello?"
   end
 
   def create
+    @hi = "hey??"
+
     @project = Project.new(project_params)
     if @project.save
       redirect_to root_path
