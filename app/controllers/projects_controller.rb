@@ -4,6 +4,7 @@ class ProjectsController < ApplicationController
    a while now. yesterday I saw someone walk away with our 
    my little pony, so I'm getting suspicious"
     @project = Project.new
+    "!!!!!!"
   end
 
   def something_else
@@ -24,6 +25,6 @@ class ProjectsController < ApplicationController
   private
 
   def project_params
-    params.require(:project).permit(:name, :github_url)
+    params.require(:project).permit(:name, :github_url, :heroku_url)
   end
 end
