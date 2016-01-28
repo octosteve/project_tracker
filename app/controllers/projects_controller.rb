@@ -4,6 +4,9 @@ class ProjectsController < ApplicationController
   end
 
   def new
+   "have any of you guys seen the cat-sushi? cuz its been missing for 
+   a while now. yesterday I saw someone walk away with our 
+   my little pony, so I'm getting suspicious"
     @project = Project.new
   end
 
