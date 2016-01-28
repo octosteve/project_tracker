@@ -1,28 +1,31 @@
-== README
+## Synopsis
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Project Tracker keeps track of all students projects
 
-Things you may want to cover:
+## Code Example
 
-* Ruby version
+Show what the library does as concisely as possible, developers should be able to figure out **how** your project solves their problem by looking at the code example. Make sure the API you are showing off is obvious, and that your code is short and concise.
 
-* System dependencies
+## Motivation
 
-* Configuration
+A short description of the motivation behind the creation and maintenance of the project. This should explain **why** the project exists.
 
-* Database creation
+## Installation
 
-* Database initialization
+Provide code examples and explanations of how to get the project.
 
-* How to run the test suite
+## API Reference
 
-* Services (job queues, cache servers, search engines, etc.)
+Depending on the size of the project, if it is small and simple enough the reference docs can be added to the README. For medium size to larger projects it is important to at least provide a link to where the API reference docs live.
 
-* Deployment instructions
+## Tests
 
-* ...
+Describe and show how to run the tests with code examples.
 
+## Contributors
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Let people know how they can dive into the project, include important links to things like issue trackers, irc, twitter accounts if applicable.
+
+## License
+
+A short snippet describing the license (MIT, Apache, etc.)
