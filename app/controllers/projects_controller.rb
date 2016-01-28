@@ -19,6 +19,6 @@ class ProjectsController < ApplicationController
   private
 
   def project_params
-    params.require(:project).permit(:name, :github_url)
+    params.require(:project).permit(:name, :github_url, :heroku_url)
   end
 end
