@@ -10,6 +10,10 @@ class ProjectsController < ApplicationController
     @project = Project.new
   end
 
+  def something_else
+    "hello?"
+  end
+
   def create
     @project = Project.new(project_params)
     if @project.save
