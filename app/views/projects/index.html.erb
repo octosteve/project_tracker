@@ -1,16 +1,9 @@
 <h1>Projects</h1>
 <%= link_to "Add your project", new_project_path %>
 <div class="row">
+  <ul>
   <% @projects.each do |project| %>
-    <div class='col-xs-4'>
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title"><%= project.name %></h3>
-        </div>
-        <div class="panel-body">
-          <%= image_tag "http://lorempixel.com/200/200/", class: "img-responsive center-block" %>
-        </div>
-      </div>
-    </div>
+    <li><%= link_to project.name, project %></li>
   <% end %>
+  </ul>
 </div>

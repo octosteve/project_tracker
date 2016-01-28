@@ -6,11 +6,11 @@
   </div>
   <div>
     <%= f.label :github_url %>
-    <%= f.url_field :github_url %>
+    <%= f.url_field :github_url, required: true %>
   </div>
   <div>
     <%= f.label :heroku_url %>
-    <%= f.url_field :heroku_url %>
+    <%= f.url_field :heroku_url, required: true %>
   </div>
-  <%= f.submit %>
+  <%= f.submit class: "btn btn-success" %>
 <% end %>

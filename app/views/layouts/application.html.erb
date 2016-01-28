@@ -8,7 +8,7 @@
 </head>
 <body>
   <div class="container">
-  <h1>Project Mode</h1>
+  <h1><%= link_to "Project Mode", root_path %></h1>
   <div class="row">
     <% if logged_in? %>
       <%= current_hacker.name %>
