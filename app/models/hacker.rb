@@ -1,4 +1,5 @@
 class Hacker < ActiveRecord::Base
+  has_many :projects
   def self.find_or_create_from_github(auth_hash)
     Hacker.where(auth_hash.slice("provider", "uid")).first_or_initialize.tap do |u|
       u.name = auth_hash.dig("info", "name")
