@@ -12,8 +12,6 @@
   <div class="row">
     <% if logged_in? %>
       <%= current_hacker.name %>
-    <% else %>
-      <%= link_to "Login with Github", "/auth/github" %>
     <% end %>
   </div>
     <%= yield %>
