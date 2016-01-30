@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160130214344) do
+ActiveRecord::Schema.define(version: 20160130221318) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,11 +32,11 @@ ActiveRecord::Schema.define(version: 20160130214344) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "heroku_url"
-    t.integer  "hacker_id"
+    t.integer  "account_id"
     t.string   "repo_name"
   end
 
-  add_index "projects", ["hacker_id"], name: "index_projects_on_hacker_id", using: :btree
+  add_index "projects", ["account_id"], name: "index_projects_on_account_id", using: :btree
 
-  add_foreign_key "projects", "accounts", column: "hacker_id"
+  add_foreign_key "projects", "accounts"
 end
