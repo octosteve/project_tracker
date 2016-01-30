@@ -4,6 +4,7 @@ class Account < ActiveRecord::Base
     self.where(auth_hash.slice("provider", "uid")).first_or_initialize.tap do |u|
       u.name = auth_hash.dig("info", "name")
       u.image = auth_hash.dig("info", "image")
+      u.github_username = auth_hash.dig("extra", "raw_info", "login")
       u.token = auth_hash.dig("credentials", "token")
       u.save
     end
