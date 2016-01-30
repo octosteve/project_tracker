@@ -1,5 +1,7 @@
 class Project < ActiveRecord::Base
   REPO_PATTERN = /\Ahttps?:\/\/github.com\/(?<username>.*?)\/(?<repo>.*?)\/?\z/
+  BASE_URL = "http://project-tracker.hostiledeveloper.com"
+
   validates :name, :github_url, :heroku_url, presence: true
   validates :github_url, format: {with: REPO_PATTERN, message: "must start with http(s)://github.com"}
   validates :repo_name, uniqueness: {message: "is already being tracked"}
@@ -15,10 +17,24 @@ class Project < ActiveRecord::Base
     local_repo.pull
   end
 
+  # TODO: This doesn't belong here.
+  def add_webhook!
+    hacker
+    .client
+    .create_hook(repo_name, "web", {
+      url: "#{BASE_URL}/webhooks",
+      content_type: "json"
+    }, {
+      events: ["push"],
+      active: true
+    })
+  end
+
   def setup!
     set_repo_name
     return false if invalid?
     return false if invalid_github_repo?
+    add_webhook!
     clone!
     save!
   end
@@ -47,7 +63,6 @@ class Project < ActiveRecord::Base
       false
     end
   end
-
 
   def clone!
     Git.clone(clone_source, local_repo_path)

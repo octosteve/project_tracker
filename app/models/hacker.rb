@@ -15,6 +15,8 @@ class Hacker < ActiveRecord::Base
     nil
   end
 
+  
+
   def client
     @client ||= Octokit::Client.new(:access_token => self.token)
   end
