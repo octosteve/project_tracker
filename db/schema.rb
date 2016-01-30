@@ -11,12 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160130144532) do
+ActiveRecord::Schema.define(version: 20160130214344) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "hackers", force: :cascade do |t|
+  create_table "accounts", force: :cascade do |t|
     t.string   "provider"
     t.string   "uid"
     t.string   "name"
@@ -38,5 +38,5 @@ ActiveRecord::Schema.define(version: 20160130144532) do
 
   add_index "projects", ["hacker_id"], name: "index_projects_on_hacker_id", using: :btree
 
-  add_foreign_key "projects", "hackers"
+  add_foreign_key "projects", "accounts", column: "hacker_id"
 end

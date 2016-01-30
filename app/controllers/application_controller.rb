@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   before_action :authenticate!
-  helper_method :current_hacker, :logged_in?
+  helper_method :current_account, :logged_in?
 
   private
 
@@ -11,11 +11,11 @@ class ApplicationController < ActionController::Base
     redirect_to sign_in_path unless logged_in?
   end
 
-  def current_hacker
-    @current_hacker ||= Hacker.find(session[:hacker_id]) if session[:hacker_id]
+  def current_account
+    @current_account ||= Account.find(session[:account_id]) if session[:account_id]
   end
 
   def logged_in?
-    !!current_hacker
+    !!current_account
   end
 end

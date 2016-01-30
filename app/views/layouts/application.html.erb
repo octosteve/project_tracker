@@ -12,7 +12,7 @@
   <h1><%= link_to "Project Mode", root_path %></h1>
   <div class="row">
     <% if logged_in? %>
-      <%= current_hacker.name %>
+      <%= current_account.name %>
     <% end %>
   </div>
     <%= yield %>

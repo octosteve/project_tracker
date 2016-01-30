@@ -13,7 +13,7 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    @project = current_hacker.projects.new(project_params)
+    @project = current_account.projects.new(project_params)
     if @project.setup!
       redirect_to @project
     else

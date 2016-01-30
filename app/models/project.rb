@@ -6,7 +6,7 @@ class Project < ActiveRecord::Base
   validates :github_url, format: {with: REPO_PATTERN, message: "must start with http(s)://github.com"}
   validates :repo_name, uniqueness: {message: "is already being tracked"}
 
-  belongs_to :hacker
+  belongs_to :account
 
   def self.sync(repo_name)
     project = Project.where("repo_name ILIKE ?", "%#{repo_name}%" ).first
@@ -19,7 +19,7 @@ class Project < ActiveRecord::Base
 
   # TODO: This doesn't belong here.
   def add_webhook!
-    hacker
+    account
     .client
     .create_hook(repo_name, "web", {
       url: "#{BASE_URL}/webhooks",
@@ -56,7 +56,7 @@ class Project < ActiveRecord::Base
   end
 
   def valid_github_repo?
-    if !!hacker.find_repo(repo_name)
+    if !!account.find_repo(repo_name)
       true
     else
       errors[:github_url] << "Must be a valid Repository"
