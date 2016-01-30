@@ -18,6 +18,14 @@ class Project < ActiveRecord::Base
     @commits ||= local_repo.log.to_a.reverse
   end
 
+  def latest_commit
+    @lastest_commit ||= commits.last
+  end
+
+  def latest_commit_hash
+    @lastest_commit_hash ||= latest_commit.to_s
+  end
+
   def invalid_github_repo?
     !valid_github_repo?
   end

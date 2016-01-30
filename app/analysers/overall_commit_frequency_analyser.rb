@@ -9,6 +9,10 @@ class OverallCommitFrequencyAnalyser
   end
 
   def call
-    project.commits.group_by_day {|u| u.date}.map { |k, v| [k, v.size] }.to_h
+    project
+      .commits
+      .group_by_day {|u| u.date}
+      .map { |k, v| [k, v.size] }
+      .to_h
   end
 end

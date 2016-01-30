@@ -21,19 +21,6 @@ class ProjectAnalyser
   end
 
   def criticisms
-    paths = ['app', 'lib'].map {|dir| project.local_repo_path + '/' + dir }
-    analysis = Rubycritic::CommandFactory
-                            .create(paths: paths)
-                            .critique
-                            .reject{|a| a.smells.empty?}
-                            .sort_by{|a| -a.smells.count}
-                            .each do |a|
-                              a.smells.each do |smell|
-                                smell.locations.map! do |location|
-                                  project.github_url + "/blob/" + project.commits.last.to_s + location.pathname.to_s.scan(/\/app\/.*?$/).join + "#L" + location.line.to_s
-                                end
-                              end
-                            end
-
+    CriticismsAnalyser.call(project)
   end
 end
