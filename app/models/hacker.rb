@@ -8,6 +8,13 @@ class Hacker < ActiveRecord::Base
       u.save
     end
   end
+
+  def find_repo(repo_name)
+    client.repo(repo_name)
+  rescue Octokit::NotFound
+    nil
+  end
+
   def client
     @client ||= Octokit::Client.new(:access_token => self.token)
   end

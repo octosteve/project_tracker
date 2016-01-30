@@ -1,7 +1,13 @@
-<h1><%= @project.name %></h1>
+<h1><%= @project_analyser.project.name %></h1>
 <div class="github-url">
-  Github Url: <%= link_to "Github", @project.github_url %>
+  Github Url: <%= link_to "Github", @project_analyser.project.github_url %>
 </div>
 <div class="heroku-url">
-  Heroku Url: <%= link_to "Heroku", @project.heroku_url %>
+  Heroku Url: <%= link_to "Heroku", @project_analyser.project.heroku_url %>
 </div>
+
+<ul class='commit-ratios'>
+  <% @project_analyser.commit_ratios.each do |account, count| %>
+    <%= account %>: Total Commits <%= count %>
+  <% end %>
+</ul>

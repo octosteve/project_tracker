@@ -1,0 +1,9 @@
+On product add, clone the repository, to a folder, error out if it's not valid
+Fetch Collaborators
+s.client.collaborators(p.repo_name)
+List collaborators on the show page
+Collaborators has_many projects
+Projects has_many collaborators
+Collaborations
+
+Rename Hacker -> Account

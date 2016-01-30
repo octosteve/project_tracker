@@ -8,13 +8,14 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @project = Project.find(params[:id])
+    project = Project.find(params[:id])
+    @project_analyser = ProjectAnalyser.new(project)
   end
 
   def create
     @project = current_hacker.projects.new(project_params)
-    if @project.save
-      redirect_to root_path
+    if @project.setup!
+      redirect_to @project
     else
       render :new
     end

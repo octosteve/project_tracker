@@ -30,4 +30,7 @@ gem "font-awesome-rails"
 
 # Authentication
 gem 'omniauth-github'
+
+# Repo
 gem "octokit", "~> 4.0"
+gem "git"
