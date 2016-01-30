@@ -34,7 +34,7 @@ class Project < ActiveRecord::Base
     set_repo_name
     return false if invalid?
     return false if invalid_github_repo?
-    add_webhook!
+    # add_webhook!
     clone!
     save!
   end
