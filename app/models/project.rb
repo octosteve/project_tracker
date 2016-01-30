@@ -6,6 +6,15 @@ class Project < ActiveRecord::Base
 
   belongs_to :hacker
 
+  def self.sync(repo_name)
+    project = Project.where("repo_name ILIKE ?", "%#{repo_name}%" ).first
+    project.sync
+  end
+
+  def sync
+    local_repo.pull
+  end
+
   def setup!
     set_repo_name
     return false if invalid?

@@ -7,3 +7,4 @@ Projects has_many collaborators
 Collaborations
 
 Rename Hacker -> Account
+/*params["pull_request"]["head"]["repo"]["full_name"]*/
