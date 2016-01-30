@@ -7,3 +7,10 @@ Projects has_many collaborators
 Collaborations
 
 Rename Hacker -> Account
+
+File, smells, context location
+
+{smells: [{
+  source: "xxx", 
+
+}]}

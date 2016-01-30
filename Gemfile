@@ -27,10 +27,15 @@ gem 'puma'
 # For the Prettize
 gem 'bootstrap-sass', '~> 3.3.6'
 gem "font-awesome-rails"
+gem "chartkick"
+gem 'groupdate'
 
 # Authentication
 gem 'omniauth-github'
 
-# Repo
+# Repo Management
 gem "octokit", "~> 4.0"
 gem "git"
+
+# Code Quality
+gem 'rubycritic'

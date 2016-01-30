@@ -6,8 +6,58 @@
   Heroku Url: <%= link_to "Heroku", @project_analyser.project.heroku_url %>
 </div>
 
-<ul class='commit-ratios'>
-  <% @project_analyser.commit_ratios.each do |account, count| %>
-    <%= account %>: Total Commits <%= count %>
-  <% end %>
-</ul>
+<div class="row">
+  <div class="col-xs-6">
+    <%= pie_chart @project_analyser.commit_ratios %>
+  </div>
+  <div class="col-xs-6">
+    <%= line_chart @project_analyser.overall_commit_frequency %>
+  </div>
+</div>
+<div class="row">
+  <h3>Analysis</h3>
+    <% @project_analyser.criticisms.each do |criticism| %>
+      <div class=col-xs-12>
+        <div class="panel panel-danger">
+          <div class="panel-heading">
+            <h3 class="panel-title"><%= criticism.name %></h3>
+          </div>
+          <div class="panel-body">
+            <table class='table table-striped'>
+              <thead>
+                <tr>
+                  <td>
+                    Type
+                  </td>
+                  <td>
+                    Details
+                  </td>
+                  <td>
+                    Locations
+                  </td>
+                </tr>
+              </thead>
+              <tbody>
+                <% criticism.smells.each do |smell| %>
+                <tr>
+                  <td><%= smell.type %></td>
+                  <td><%= smell.context %>: <%= smell.message %></td>
+                  <td>
+                    <ul>
+                    <% smell.locations.each do |location| %>
+                      <li><%= link_to "Source", location, target: "_blank"%> </li>
+                    <% end %>
+                    </ul>
+                  </td>
+              </tr>
+                <% end %>
+              </tbody>
+            </table>
+          <ul>
+          </ul>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </ul>
+</div>

@@ -15,7 +15,7 @@ class Project < ActiveRecord::Base
   end
 
   def commits
-    local_repo.log.to_a.reverse
+    @commits ||= local_repo.log.to_a.reverse
   end
 
   def invalid_github_repo?
@@ -33,7 +33,7 @@ class Project < ActiveRecord::Base
 
 
   def clone!
-    Git.clone(clone_source, project_directory)
+    Git.clone(clone_source, local_repo_path)
   end
 
   def canonical_project_name
@@ -48,19 +48,19 @@ class Project < ActiveRecord::Base
     "http://github.com/" + repo_name + ".git"
   end
 
+  def local_repo_path
+    File.join(Rails.root,
+    "projects",
+    canonical_project_name)
+  end
+
   private
   def set_repo_name
     self.repo_name = github_url.scan(REPO_PATTERN).join("/")
   end
 
-  def project_directory
-    File.join(Rails.root,
-              "projects",
-              canonical_project_name)
-  end
 
   def local_repo
-    Git.open(project_directory)
+    @local_repo ||= Git.open(local_repo_path)
   end
-
 end

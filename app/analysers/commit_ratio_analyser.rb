@@ -9,14 +9,12 @@ class CommitRatioAnalyser
   end
 
   def call
-    commits = project.commits
-    commits.each_with_object(Hash.new(0)) do |commit, container|
+    project.commits.each_with_object(Hash.new(0)) do |commit, container|
       container[author_format(commit)] += 1
     end
   end
 
   def author_format(commit)
-    author = commit.author
-    "#{author.name}  - #{author.email}"
+    commit.author.name
   end
 end
