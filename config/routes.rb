@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   get '/auth/github/callback', to: 'github_sessions#create'
   get 'sign-in', to: "github_sessions#new"
   resources :projects
+  post '/webhooks', to: 'webhooks#create'
 end
