@@ -9,12 +9,20 @@ class CommitRatioAnalyser
   end
 
   def call
-    project.commits.each_with_object(Hash.new(0)) do |commit, container|
+    project
+    .commits
+    .reject(&is_pull_request_merge?)
+    .each_with_object(Hash.new(0)) do |commit, container|
       container[author_format(commit)] += 1
     end
   end
 
   def author_format(commit)
     commit.author.name
+  end
+
+  private
+  def is_pull_request_merge?
+    ->(commit) {commit.message.include?("Merge pull request")}
   end
 end
