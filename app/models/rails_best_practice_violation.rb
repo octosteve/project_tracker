@@ -13,6 +13,6 @@ class RailsBestPracticeViolation < ActiveRecord::Base
   end
 
   def github_url
-    AnalyzerHelpers::GithubLocation.new(file_name, line_number, project.github_url, commit_hash).to_s
+    GithubLocation.new(file_name, line_number, project.github_url, commit_hash).to_s
   end
 end

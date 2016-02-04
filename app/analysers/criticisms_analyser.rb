@@ -37,7 +37,7 @@ class CriticismsAnalyser
 
     def set_locations(smell, project)
       smell["locations"].map do |location|
-        AnalyzerHelpers::GithubLocation.new(location["pathname"]["path"], location["line"], project.github_url, project.latest_commit_hash).to_s
+        GithubLocation.new(location["pathname"]["path"], location["line"], project.github_url, project.latest_commit_hash).to_s
       end
     end
   end
