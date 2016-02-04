@@ -5,6 +5,12 @@
 <div class="heroku-url">
   Heroku Url: <%= link_to "Heroku", @project_analyser.project.heroku_url %>
 </div>
+<div class="screenshot">
+<%= link_to "Get Screeshot", screenshot_path(@project_analyser.project), remote: true %>
+<!-- <img src="/assets/title-izer.png"> -->
+<%= image_tag @project_analyser.project.screenshot %>
+  <!-- <button class='btn' id="screenshot">Get Screeshot</button> -->
+</div>
 
 <div class="row">
   <div class="col-xs-6">

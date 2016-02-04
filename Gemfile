@@ -8,11 +8,13 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'phantomjs'
 
 group :development, :test do
   gem 'byebug'
   gem 'dotenv-rails'
   gem 'pry-rails'
+  gem 'figaro'
 end
 
 group :development do
