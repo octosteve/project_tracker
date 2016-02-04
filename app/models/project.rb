@@ -17,6 +17,7 @@ class Project < ActiveRecord::Base
 
   def sync
     local_repo.pull
+    ProjectAnalyser.call(self)
   end
 
   # TODO: This doesn't belong here.

@@ -10,11 +10,9 @@ class ProjectAnalyser
 
   def call
     CommitRatioAnalyser.call(project)
-    CommitFrequencyAnalyser.call(project)
     OverallCommitFrequencyAnalyser.call(project)
     RailsBestPracticesAnalyser.call(project)
     CriticismsAnalyser.call(project)
-    IndividualCommitFrequencyAnalyser.call(project)
   end
 
   def commit_ratios
@@ -22,15 +20,7 @@ class ProjectAnalyser
   end
 
   def overall_commit_frequency
-    CommitFrequencyAnalyser.call(project)
-  end
-
-  def overall_commit_frequency
     OverallCommitFrequencyAnalyser.call(project)
-  end
-
-  def individual_commit_frequency
-    IndividualCommitFrequencyAnalyser.call(project)
   end
 
   def criticisms
