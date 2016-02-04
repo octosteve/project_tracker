@@ -1,7 +1,20 @@
 class ProjectAnalyser
   attr_reader :project
+  def self.call(project)
+    self.new(project).call
+  end
+
   def initialize(project)
     @project = project
+  end
+
+  def call
+    CommitRatioAnalyser.call(project)
+    CommitFrequencyAnalyser.call(project)
+    OverallCommitFrequencyAnalyser.call(project)
+    RailsBestPracticesAnalyser.call(project)
+    CriticismsAnalyser.call(project)
+    IndividualCommitFrequencyAnalyser.call(project)
   end
 
   def commit_ratios

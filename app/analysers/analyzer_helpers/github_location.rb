@@ -12,6 +12,7 @@ module AnalyzerHelpers
       "#{github_url}/blob/#{commit_hash}#{file_path}#L#{line_number}"
     end
 
+    # Support db/schema.rb
     def file_path
       full_path.scan(/\/app\/.*?$/).join
     end
