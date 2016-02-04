@@ -23,4 +23,8 @@ class ProjectAnalyser
   def criticisms
     CriticismsAnalyser.call(project)
   end
+
+  def best_practices
+    RailsBestPracticesAnalyser.call(project)
+  end
 end

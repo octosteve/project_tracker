@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  project_id: 
+  commit_hash: MyString
+  violation: MyString
+  message: MyString
+  more_info_url: MyString
+  file_name: MyString
+  line_number: 1
+
+two:
+  project_id: 
+  commit_hash: MyString
+  violation: MyString
+  message: MyString
+  more_info_url: MyString
+  file_name: MyString
+  line_number: 1

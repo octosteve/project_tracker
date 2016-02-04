@@ -39,3 +39,4 @@ gem "git"
 
 # Code Quality
 gem 'rubycritic'
+gem "rails_best_practices"

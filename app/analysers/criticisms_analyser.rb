@@ -37,27 +37,11 @@ class CriticismsAnalyser
 
     def set_locations(smell, project)
       smell.locations.map do |location|
-        GithubLocation.new(location, project.github_url, project.latest_commit_hash).to_s
+        AnalyzerHelpers::GithubLocation.new(location.pathname.to_s, location.line, project.github_url, project.latest_commit_hash).to_s
       end
     end
   end
 
-  class GithubLocation
-    attr_reader :location, :github_url, :commit_hash
-    def initialize(location, github_url, commit_hash)
-      @location = location
-      @github_url = github_url
-      @commit_hash = commit_hash
-    end
-
-    def to_s
-      "#{github_url}/blob/#{commit_hash}#{file_path}#L#{location.line}"
-    end
-
-    def file_path
-      location.pathname.to_s.scan(/\/app\/.*?$/).join
-    end
-  end
   attr_reader :project
 
   def self.call(project)

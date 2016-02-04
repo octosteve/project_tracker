@@ -8,56 +8,20 @@
 
 <div class="row">
   <div class="col-xs-6">
+    <h3>Commit Ratios</h3>
     <%= pie_chart @project_analyser.commit_ratios %>
   </div>
   <div class="col-xs-6">
+    <h3>Commit Frequency</h3>
     <%= line_chart @project_analyser.overall_commit_frequency %>
   </div>
 </div>
 <div class="row">
-  <h3>Analysis</h3>
-    <% @project_analyser.criticisms.each do |criticism| %>
-      <div class=col-xs-12>
-        <div class="panel panel-danger">
-          <div class="panel-heading">
-            <h3 class="panel-title"><%= criticism.name %></h3>
-          </div>
-          <div class="panel-body">
-            <table class='table table-hover'>
-              <thead>
-                <tr>
-                  <td>
-                    Type
-                  </td>
-                  <td>
-                    Details
-                  </td>
-                  <td>
-                    Locations
-                  </td>
-                </tr>
-              </thead>
-              <tbody>
-                <% criticism.smells.each do |smell| %>
-                <tr>
-                  <td><%= smell.type %></td>
-                  <td><%= smell.details %></td>
-                  <td>
-                    <ul>
-                    <% smell.locations.each do |location| %>
-                      <li><%= link_to "Source", location, target: "_blank"%> </li>
-                    <% end %>
-                    </ul>
-                  </td>
-              </tr>
-                <% end %>
-              </tbody>
-            </table>
-          <ul>
-          </ul>
-          </div>
-        </div>
-      </div>
-    <% end %>
+  <h3>Rails Best Practices</h3>
+  <%= render partial: 'analyzers/best_practice', collection: @project_analyser.best_practices %>
+</div>
+<div class="row">
+  <h3>Smells</h3>
+    <%= render partial: 'analyzers/criticism', collection: @project_analyser.criticisms %>
   </ul>
 </div>

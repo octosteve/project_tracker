@@ -7,6 +7,7 @@ class Project < ActiveRecord::Base
   validates :repo_name, uniqueness: {message: "is already being tracked"}
 
   belongs_to :account
+  has_many :rails_best_practice_violations
 
   def self.sync(repo_name)
     project = Project.where("repo_name ILIKE ?", "%#{repo_name}%" ).first
@@ -44,11 +45,11 @@ class Project < ActiveRecord::Base
   end
 
   def latest_commit
-    @lastest_commit ||= commits.last
+    @latest_commit ||= commits.last
   end
 
   def latest_commit_hash
-    @lastest_commit_hash ||= latest_commit.to_s
+    @latest_commit_hash ||= latest_commit.to_s
   end
 
   def invalid_github_repo?
