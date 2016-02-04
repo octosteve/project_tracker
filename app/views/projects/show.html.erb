@@ -1,15 +1,21 @@
 <h1><%= @project_analyser.project.name %></h1>
-<div class="github-url">
-  Github Url: <%= link_to "Github", @project_analyser.project.github_url %>
-</div>
-<div class="heroku-url">
-  Heroku Url: <%= link_to "Heroku", @project_analyser.project.heroku_url %>
-</div>
-<div class="screenshot">
-<%= link_to "Get Screeshot", screenshot_path(@project_analyser.project), remote: true %>
-<!-- <img src="/assets/title-izer.png"> -->
-<%= image_tag @project_analyser.project.screenshot %>
-  <!-- <button class='btn' id="screenshot">Get Screeshot</button> -->
+<div class="row">
+  <div class="col-xs-6">
+    <ul class="project-urls">
+      <li>Github Url: <%= link_to "Github", @project_analyser.project.github_url %>
+      </li>
+      <li>Heroku Url: <%= link_to "Heroku", @project_analyser.project.heroku_url %>
+      </li>
+    </ul>
+  </div>
+  <div class="screenshot col-xs-6">
+    <%= link_to "Get Screeshot", screenshot_path(@project_analyser.project), remote: true, class: 'btn btn-primary', id: 'screenshot-btn'%>
+    <br>
+    <br>
+    <div id="screenshot-<%= @project_analyser.project.id %>">
+      <%= image_tag @project_analyser.project.screenshot, class: "screenshot-image" %>
+    </div>
+  </div>
 </div>
 
 <div class="row">

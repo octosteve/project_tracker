@@ -22,18 +22,22 @@ class ProjectsController < ApplicationController
   end
 
   def take_screenshot
-    project = Project.find(params[:id])
+    @project = Project.find(params[:id])
     path = Rails.root.join('app', 'assets', 'javascripts', 'screenshot.js')
-    url = project.heroku_url
-    screenshot = project.github_url.split("/").last
+    url = @project.heroku_url
+    screenshot = @project.github_url.split("/").last
     binding.pry
     Dir.chdir(Rails.root.join('public', 'images'))
     puts Dir.pwd
     binding.pry
     system "phantomjs #{path} #{url} #{screenshot}"
-    project.screenshot = "#{screenshot}.png"
-    project.save
+    @project.screenshot = "#{screenshot}.png"
+    @project.save
 
+    respond_to do |format|
+      format.html
+      format.js { }
+    end
     
   end
 
