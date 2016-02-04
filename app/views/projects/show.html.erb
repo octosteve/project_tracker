@@ -1,24 +1,23 @@
 <h1><%= @project_analyser.project.name %></h1>
-<div class="row">
-  <div class="col-xs-6">
     <ul class="project-urls">
-      <li>Github Url: <%= link_to "Github", @project_analyser.project.github_url %>
+      <li>Github Url: <%= link_to "Github", @project_analyser.project.github_url, target: "_blank" %>
       </li>
-      <li>Heroku Url: <%= link_to "Heroku", @project_analyser.project.heroku_url %>
+      <li>Heroku Url: <%= link_to "Heroku", @project_analyser.project.heroku_url, target: "_blank" %>
       </li>
     </ul>
+<div class="row panel panel-default project-panel">
+  <div class="video-embed col-xs-6">
+    Video Coming Soon!
   </div>
   <div class="screenshot col-xs-6">
-    <%= link_to "Get Screeshot", screenshot_path(@project_analyser.project), remote: true, class: 'btn btn-primary', id: 'screenshot-btn'%>
-    <br>
-    <br>
     <div id="screenshot-<%= @project_analyser.project.id %>">
-      <%= image_tag @project_analyser.project.screenshot, class: "screenshot-image" %>
+      <%= render partial: 'projects/screenshot', locals: {project: @project_analyser.project} %>
+       <%= link_to "Get Screeshot", screenshot_path(@project_analyser.project), remote: true, class: 'btn btn-primary', id: 'screenshot-btn'%>
     </div>
   </div>
+  
 </div>
-
-<div class="row">
+<div class="row panel panel-default project-panel">
   <div class="col-xs-6">
     <%= pie_chart @project_analyser.commit_ratios %>
   </div>

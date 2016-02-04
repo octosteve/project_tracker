@@ -1,7 +1,21 @@
-// Place all the styles related to the projects controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-
 .screenshot-image {
-  height: 200px;
+  height: 300px;
+  margin-left: 50px;
+}
+
+.project-urls li {
+  list-style: none;
+}
+
+#screenshot-btn {
+  margin-left: 35%;
+}
+
+.project-panel {
+  padding: 10px;
+}
+
+#screenshot-taken-at {
+  margin-left: 25%;
+  margin-bottm: 3px;
 }

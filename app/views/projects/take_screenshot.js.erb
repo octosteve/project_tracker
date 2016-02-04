@@ -1,1 +1,2 @@
-$("#screenshot-<%= @project.id %>").html("<%= image_tag @project.screenshot, class: 'screenshot-image'%>")
+$("#screenshot-<%= @project.id %>").html("<%= j render partial: 'projects/screenshot', locals: {project: @project} %>")
+

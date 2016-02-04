@@ -8,7 +8,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    project = Project.find(params[:id])
+    project = Project.find(params[:id]).decorate
     @project_analyser = ProjectAnalyser.new(project)
   end
 
@@ -22,17 +22,15 @@ class ProjectsController < ApplicationController
   end
 
   def take_screenshot
-    @project = Project.find(params[:id])
-    path = Rails.root.join('app', 'assets', 'javascripts', 'screenshot.js')
-    url = @project.heroku_url
-    screenshot = @project.github_url.split("/").last
-    binding.pry
-    Dir.chdir(Rails.root.join('public', 'images'))
-    puts Dir.pwd
-    binding.pry
-    system "phantomjs #{path} #{url} #{screenshot}"
-    @project.screenshot = "#{screenshot}.png"
-    @project.save
+    @project = Project.find(params[:id]).decorate
+    ScreenshotHandler.get_and_save_screenshot(@project)
+    # path = Rails.root.join('app', 'assets', 'javascripts', 'screenshot.js')
+    # url = @project.heroku_url
+    # screenshot = "#{@project.github_url.split("/").last}-#{Time.now}.png"
+    # Dir.chdir(Rails.root.join('public', 'images'))
+    # system "phantomjs #{path} #{url} #{screenshot}"
+    # @project.screenshot = screenshot
+    # @project.save
 
     respond_to do |format|
       format.html

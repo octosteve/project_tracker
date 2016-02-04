@@ -3,19 +3,10 @@ $grid-gutter-width: 10px;
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "font-awesome";
+@import "projects.css";
+
 #login-button{
   font-size: 11em;
 }
 
-.screenshot-image {
-  height: 300px;
-  margin-left: 50px;
-}
 
-.project-urls li {
-  list-style: none;
-}
-
-#screenshot-btn {
-  margin-left: 35%;
-}

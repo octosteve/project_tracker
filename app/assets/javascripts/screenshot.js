@@ -26,7 +26,7 @@ page.onError = function(msg, trace) {
 page.open(system.args[1], function(status) {
   console.log('Status: ' + status);
   console.log(system.args[2]);
-  page.render(system.args[2] + ".png");
+  page.render(system.args[2]);
   phantom.exit();
 });
 
