@@ -12,8 +12,8 @@ class CriticismsAnalyser
   class Criticism
     attr_reader :name, :smells
     def initialize(criticism, project)
-      @name = criticism.name
-      @smells = set_smells(criticism.smells, project)
+      @name = criticism["name"]
+      @smells = set_smells(criticism["smells"], project)
     end
 
     private
@@ -25,19 +25,19 @@ class CriticismsAnalyser
   class Smell
     attr_reader :type, :details, :locations
     def initialize(smell, project)
-      @type = smell.type
+      @type = smell["type"]
       @details = set_details(smell)
       @locations = set_locations(smell, project)
     end
 
     private
     def set_details(smell)
-      "#{smell.context}: #{smell.message}"
+      "#{smell["context"]}: #{smell["message"]}"
     end
 
     def set_locations(smell, project)
-      smell.locations.map do |location|
-        AnalyzerHelpers::GithubLocation.new(location.pathname.to_s, location.line, project.github_url, project.latest_commit_hash).to_s
+      smell["locations"].map do |location|
+        AnalyzerHelpers::GithubLocation.new(location["pathname"]["path"], location["line"], project.github_url, project.latest_commit_hash).to_s
       end
     end
   end
@@ -54,13 +54,16 @@ class CriticismsAnalyser
 
 
   def call
+    c = RubycriticCriticism.find_by(commit_hash: project.latest_commit_hash)
+    return CriticismCollection.new(c.payload, project) if c
+
     paths = generate_project_paths
     criticisms = Rubycritic::CommandFactory
                             .create(paths: paths)
                             .critique
                             .reject{|a| a.smells.empty?}
-
-    CriticismCollection.new(criticisms, project)
+    c = project.rubycritic_criticisms.create(commit_hash: project.latest_commit_hash, payload: criticisms)
+    CriticismCollection.new(c.payload, project)
   end
 
   private

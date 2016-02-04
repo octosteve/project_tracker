@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160203235229) do
+ActiveRecord::Schema.define(version: 20160204010555) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,18 @@ ActiveRecord::Schema.define(version: 20160203235229) do
   add_index "rails_best_practice_violations", ["commit_hash"], name: "index_rails_best_practice_violations_on_commit_hash", using: :btree
   add_index "rails_best_practice_violations", ["project_id"], name: "index_rails_best_practice_violations_on_project_id", using: :btree
 
+  create_table "rubycritic_criticisms", force: :cascade do |t|
+    t.string   "commit_hash"
+    t.json     "payload"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "project_id"
+  end
+
+  add_index "rubycritic_criticisms", ["commit_hash"], name: "index_rubycritic_criticisms_on_commit_hash", using: :btree
+  add_index "rubycritic_criticisms", ["project_id"], name: "index_rubycritic_criticisms_on_project_id", using: :btree
+
   add_foreign_key "projects", "accounts"
   add_foreign_key "rails_best_practice_violations", "projects"
+  add_foreign_key "rubycritic_criticisms", "projects"
 end
