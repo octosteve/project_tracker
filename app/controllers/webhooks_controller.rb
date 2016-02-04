@@ -4,6 +4,7 @@ class WebhooksController < ApplicationController
   def create
     if params[:ref] == "refs/heads/master"
       repo_name = params[:repository][:full_name]
+      logger.info("#{repo_name} was updated")
       Project.sync(repo_name)
     end
     render nothing: true
