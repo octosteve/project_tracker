@@ -16,6 +16,7 @@ class RailsBestPracticesAnalyser
     analyzer.analyze
     analyzer
     .errors
+    .select {|error| error.filename == project.local_repo_path}
     .map do |error|
       RailsBestPracticeViolation
         .create_from_error(error, project)
