@@ -24,14 +24,6 @@ class ProjectsController < ApplicationController
   def take_screenshot
     @project = Project.find(params[:id]).decorate
     ScreenshotHandler.get_and_save_screenshot(@project)
-    # path = Rails.root.join('app', 'assets', 'javascripts', 'screenshot.js')
-    # url = @project.heroku_url
-    # screenshot = "#{@project.github_url.split("/").last}-#{Time.now}.png"
-    # Dir.chdir(Rails.root.join('public', 'images'))
-    # system "phantomjs #{path} #{url} #{screenshot}"
-    # @project.screenshot = screenshot
-    # @project.save
-
     respond_to do |format|
       format.html
       format.js { }
