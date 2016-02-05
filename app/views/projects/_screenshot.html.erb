@@ -4,3 +4,4 @@
 <div>
   <%= image_tag project.screenshot, class: "screenshot-image" %>
 </div>
+<%= link_to "Get Screeshot", screenshot_path(project), remote: true, class: 'btn btn-primary', id: 'screenshot-btn'%>
