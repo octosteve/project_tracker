@@ -5,6 +5,15 @@
 <div class="heroku-url">
   Heroku Url: <%= link_to "Heroku", @project_analyser.project.heroku_url %>
 </div>
+<div class="youtube-form">
+  <%= form_for @video do |f| %>
+    <div>
+      <%= f.label :url %>
+      <%= f.text_field :url, required: true %>
+    </div>
+    <%= f.submit class: "btn btn-success" %>
+  <% end %>
+</div>
 
 <div class="row">
   <div class="col-xs-6">

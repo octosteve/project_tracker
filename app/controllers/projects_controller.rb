@@ -10,6 +10,7 @@ class ProjectsController < ApplicationController
   def show
     project = Project.find(params[:id])
     @project_analyser = ProjectAnalyser.new(project)
+    @video = Video.new
   end
 
   def create

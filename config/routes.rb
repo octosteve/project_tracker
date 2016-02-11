@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   get 'sign-in', to: "github_sessions#new"
   resources :projects
   post '/webhooks', to: 'webhooks#create'
+  post '/videos', to: 'videos#create'
 end
