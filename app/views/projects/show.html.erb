@@ -11,6 +11,8 @@
       <%= f.label :url %>
       <%= f.text_field :url, required: true %>
     </div>
+      <%= f.hidden_field :project_id, value: @project_analyser.project.id %>
+    </div>
     <%= f.submit class: "btn btn-success" %>
   <% end %>
 </div>
