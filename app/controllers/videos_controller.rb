@@ -5,7 +5,6 @@ class VideosController < ApplicationController
     if video.save
       project.videos << video
       project.save 
-      binding.pry
       redirect_to project_path(project)
     end
   end
