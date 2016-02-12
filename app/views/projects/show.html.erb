@@ -19,7 +19,7 @@
 
 <div class="youtube-embed col-xs-6">
   <% if @latest_video %>
-    <h3>Lastest version of the project:</h3>
+    <h3>Lastest video (uploaded <%= @video_timestamp %>):</h3>
     <iframe width="560" height="315" src="https://www.youtube.com/embed/<%= @latest_video %>" frameborder="0" allowfullscreen></iframe>
   <% end %>  
 </div>

@@ -29,6 +29,7 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem "font-awesome-rails"
 gem "chartkick"
 gem 'groupdate'
+gem 'draper', '~> 1.3'
 
 # Authentication
 gem 'omniauth-github'
