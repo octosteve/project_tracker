@@ -11,6 +11,7 @@ class ProjectsController < ApplicationController
     project = Project.find(params[:id])
     @project_analyser = ProjectAnalyser.new(project)
     @video = Video.new
+    @latest_video = project.videos.last.get_youtube_id if project.videos.last
   end
 
   def create
