@@ -7,6 +7,7 @@ class Project < ActiveRecord::Base
   validates :repo_name, uniqueness: {message: "is already being tracked"}
 
   belongs_to :account
+  has_many :videos
 
   def self.sync(repo_name)
     project = Project.where("repo_name ILIKE ?", "%#{repo_name}%" ).first
