@@ -18,9 +18,9 @@
 </div>
 
 <div class="youtube-embed col-xs-6">
-  <% if @latest_video %>
-    <h3>Lastest video (uploaded <%= @video_timestamp %>):</h3>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/<%= @latest_video %>" frameborder="0" allowfullscreen></iframe>
+  <% if @project_analyser.project.has_videos? %>
+    <h3>Lastest video (uploaded <%= @project_analyser.project.video_timestamp %>):</h3>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/<%= @project_analyser.project.latest_youtube_id %>" frameborder="0" allowfullscreen></iframe>
   <% end %>  
 </div>
 

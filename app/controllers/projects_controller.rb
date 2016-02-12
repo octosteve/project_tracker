@@ -11,8 +11,6 @@ class ProjectsController < ApplicationController
     project = Project.find(params[:id]).decorate
     @project_analyser = ProjectAnalyser.new(project)
     @video = Video.new
-    @latest_video = project.videos.last.get_youtube_id if project.videos.last
-    @video_timestamp = project.video_uploaded_at
   end
 
   def create
