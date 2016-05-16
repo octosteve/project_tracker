@@ -16,6 +16,7 @@
 /shared
 /projects/*
 !/projects/.keep
+/public/tmp/rubycritic/*
 
 # Ignore application configuration
 /config/application.yml

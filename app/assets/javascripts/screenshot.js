@@ -3,9 +3,6 @@ console.log('here!')
 var system = require('system');
 var page = require('webpage').create();
 
-console.log(page);
-console.log(system.args)
-
 
 
 page.onError = function(msg, trace) {
@@ -24,8 +21,6 @@ page.onError = function(msg, trace) {
 };
 
 page.open(system.args[1], function(status) {
-  console.log('Status: ' + status);
-  console.log(system.args[2]);
   page.render(system.args[2]);
   phantom.exit();
 });
