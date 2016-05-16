@@ -1,0 +1,14 @@
+<h1><%= @cohort.name %></h1>
+<div class="row">
+  <div class="col-xs-4">
+    <h3>Add a new project</h3>
+    <%= render "projects/form" %>
+  </div>
+  <div class="col-xs-8">
+    <ul>
+      <% @cohort.projects.each do |project| %>
+        <li><%= link_to project.name, [@cohort, project] %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>
