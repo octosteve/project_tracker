@@ -7,6 +7,7 @@ class Project < ActiveRecord::Base
   validates :repo_name, uniqueness: {message: "is already being tracked"}
 
   belongs_to :account
+  belongs_to :cohort
   has_many :rails_best_practice_violations
   has_many :rubycritic_criticisms
 
@@ -37,7 +38,8 @@ class Project < ActiveRecord::Base
     set_repo_name
     return false if invalid?
     return false if invalid_github_repo?
-    # add_webhook!
+    return false if submitter_not_owner?
+    add_webhook!
     clone!
     save!
   end
@@ -87,6 +89,10 @@ class Project < ActiveRecord::Base
     File.join(Rails.root,
     "projects",
     canonical_project_name)
+  end
+
+  def submitter_not_owner?
+    account.github_username != canonical_project_owner
   end
 
   private

@@ -1,0 +1,17 @@
+<h1>Select a cohort</h1>
+<ul>
+<% @cohorts.each do |cohort| %>
+  <li><%= link_to cohort.name, cohort %></li>
+<% end %>
+</ul>
+
+<h3>Create a cohort</h3>
+<%= form_for Cohort.new do |f| %>
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div>
+    <%= f.submit nil, class: "btn btn-primary" %>
+  </div>
+<% end %>

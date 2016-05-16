@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160204010555) do
+ActiveRecord::Schema.define(version: 20160516015801) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,12 @@ ActiveRecord::Schema.define(version: 20160204010555) do
     t.string   "github_username"
   end
 
+  create_table "cohorts", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "projects", force: :cascade do |t|
     t.string   "name"
     t.string   "github_url"
@@ -35,9 +41,11 @@ ActiveRecord::Schema.define(version: 20160204010555) do
     t.string   "heroku_url"
     t.integer  "account_id"
     t.string   "repo_name"
+    t.integer  "cohort_id"
   end
 
   add_index "projects", ["account_id"], name: "index_projects_on_account_id", using: :btree
+  add_index "projects", ["cohort_id"], name: "index_projects_on_cohort_id", using: :btree
   add_index "projects", ["repo_name"], name: "index_projects_on_repo_name", using: :btree
 
   create_table "rails_best_practice_violations", force: :cascade do |t|
@@ -67,6 +75,7 @@ ActiveRecord::Schema.define(version: 20160204010555) do
   add_index "rubycritic_criticisms", ["project_id"], name: "index_rubycritic_criticisms_on_project_id", using: :btree
 
   add_foreign_key "projects", "accounts"
+  add_foreign_key "projects", "cohorts"
   add_foreign_key "rails_best_practice_violations", "projects"
   add_foreign_key "rubycritic_criticisms", "projects"
 end
