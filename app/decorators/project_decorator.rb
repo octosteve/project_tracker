@@ -1,5 +1,5 @@
-class ProjectDecorator < Draper::Decorator
-  delegate_all
+class ProjectDecorator < SimpleDelegator
+
 
   def screenshot_taken_at
     taken_at = screenshot.split("-")[-4..-1].join("-")

@@ -8,7 +8,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    project = Project.find(params[:id]).decorate
+    project = ProjectDecorator.new(Project.find(params[:id]))
     @project_analyser = ProjectAnalyser.new(project)
   end
 
@@ -22,7 +22,7 @@ class ProjectsController < ApplicationController
   end
 
   def take_screenshot
-    @project = Project.find(params[:id]).decorate
+    @project = ProjectDecorator.new(Project.find(params[:id]))
     ScreenshotHandler.get_and_save_screenshot(@project)
     respond_to do |format|
       format.html
