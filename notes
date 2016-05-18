@@ -1,1 +1,7 @@
-Add index to repo_name
+Testing: Allow alternate directory for clone!
+         Clean up setting up repo_name
+Dependent destroy of cohort with project
+Log out
+Edit cohort
+
+restrict deleting and modification of projects to owner

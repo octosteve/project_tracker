@@ -1,17 +1,31 @@
-<h1>Select a cohort</h1>
-<ul>
-<% @cohorts.each do |cohort| %>
-  <li><%= link_to cohort.name, cohort %></li>
-<% end %>
-</ul>
-
-<h3>Create a cohort</h3>
-<%= form_for Cohort.new do |f| %>
-  <div>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+<div class="row">
+  <div class="col-xs-3">
+    <h3>Create a cohort</h3>
+    <%= form_for Cohort.new do |f| %>
+      <div class="form-group">
+        <%= f.label :name %>
+        <%= f.text_field :name, class: "form-control" %>
+      </div>
+      <div>
+        <%= f.submit nil, class: "btn btn-primary btn-block" %>
+      </div>
+    <% end %>
   </div>
-  <div>
-    <%= f.submit nil, class: "btn btn-primary" %>
+  <div class="col-xs-offset-1 col-xs-8">
+    <h1>Select a cohort</h1>
+    <div class="row">
+    <% @cohorts.each do |cohort| %>
+      <div class="col-xs-3">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <%= link_to cohort.name, cohort %>
+          </div>
+          <div class="panel-body">
+            <%= button_to "Delete Cohort", cohort, method: :delete, class: "btn btn-danger" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
   </div>
-<% end %>
+  </div>
+</div>

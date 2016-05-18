@@ -17,6 +17,12 @@ class CohortsController < ApplicationController
     end
   end
 
+  def destroy
+    @cohort = Cohort.find(params[:id])
+    @cohort.destroy!
+    redirect_to root_path, notice: "#{@cohort.name} successfully deleted"
+  end
+
   private
 
   def cohort_params

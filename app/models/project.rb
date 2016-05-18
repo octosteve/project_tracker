@@ -8,8 +8,8 @@ class Project < ActiveRecord::Base
 
   belongs_to :account
   belongs_to :cohort
-  has_many :rails_best_practice_violations
-  has_many :rubycritic_criticisms
+  has_many :rails_best_practice_violations, dependent: :destroy
+  has_many :rubycritic_criticisms, dependent: :destroy
 
   def self.sync(repo_name)
     project = Project.where("repo_name ILIKE ?", "%#{repo_name}%" ).first

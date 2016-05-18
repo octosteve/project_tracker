@@ -9,12 +9,23 @@
 </head>
 <body>
   <div class="container">
-  <h1><%= link_to "Project Mode", root_path %></h1>
+  <h1><%= link_to "Project Tracker", root_path %></h1>
   <div class="row">
     <% if logged_in? %>
       <%= current_account.name %>
     <% end %>
   </div>
+  <% if notice %>
+    <div class="alert alert-success">
+      <%= notice %>
+    </div>
+  <% end %>
+  <% if alert %>
+    <div class="alert alert-danger">
+      <%= alert %>
+    </div>
+  <% end %>
+
     <%= yield %>
   </div>
 </body>

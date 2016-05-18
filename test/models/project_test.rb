@@ -17,13 +17,17 @@ class ProjectTest < ActiveSupport::TestCase
 
   test "can extract github repo name" do
     project = Project.new(github_url: "https://github.com/StevenNunez/ProjectTracker")
+    project.setup!
     assert(project.repo_name == "StevenNunez/ProjectTracker", project.repo_name)
+
     project = Project.new(github_url: "http://github.com/StevenNunez/ProjectTracker/")
+    project.setup!
     assert(project.repo_name == "StevenNunez/ProjectTracker", project.repo_name)
   end
 
   test "it fetches the repository" do
     project = Project.new(github_url: "https://github.com/StevenNunez/project_tracker")
+    project.setup!
     project.clone!
     cloned_directory = File.join(Rails.root, "projects", "project_tracker")
     assert(Dir.exist?(cloned_directory), "Directory should have been cloned")

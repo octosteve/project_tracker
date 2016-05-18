@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   get '/auth/github/callback', to: 'github_sessions#create'
   get 'sign-in', to: "github_sessions#new"
 
-  resources :cohorts do
+  resources :cohorts, only: [:index, :show, :destroy, :create] do
     resources :projects
   end
   post '/webhooks', to: 'webhooks#create'
