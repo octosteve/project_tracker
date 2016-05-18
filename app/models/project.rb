@@ -21,6 +21,33 @@ class Project < ActiveRecord::Base
     ProjectAnalyser.call(self)
   end
 
+  def remove!
+    delete_local_repo
+    remove_webhook!
+    self.destroy!
+  end
+
+  def delete_local_repo
+    FileUtils.rm_rf(local_repo_path)
+  end
+
+  def remove_webhook!
+    hook = find_hook
+    
+    account
+      .client
+      .remove_hook(repo_name, hook[:id])
+  end
+
+  def find_hook
+    account
+      .client
+      .hooks(repo_name)
+      .find do |hook|
+        hook[:config][:url] == "#{BASE_URL}/webhooks"
+      end
+  end
+
   # TODO: This doesn't belong here.
   def add_webhook!
     account
