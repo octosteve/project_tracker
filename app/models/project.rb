@@ -69,6 +69,19 @@ class Project < ActiveRecord::Base
     end
   end
 
+  def submitter_not_owner?
+    !submitter_is_owner?
+  end
+
+  def submitter_is_owner?
+    if account.github_username == canonical_project_owner
+      true
+    else
+      errors[:account] << "You must own the repo you're submitting"
+      false
+    end
+  end
+
   def clone!
     Git.clone(clone_source, local_repo_path)
   end
@@ -91,9 +104,6 @@ class Project < ActiveRecord::Base
     canonical_project_name)
   end
 
-  def submitter_not_owner?
-    account.github_username != canonical_project_owner
-  end
 
   private
   def set_repo_name

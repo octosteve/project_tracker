@@ -14,6 +14,7 @@ group :development, :test do
   gem 'byebug'
   gem 'dotenv-rails'
   gem 'pry-rails'
+  gem 'thin'
 end
 
 group :development do
@@ -23,7 +24,9 @@ end
 
 # For Heroku
 gem "rails_12factor"
-gem 'puma'
+group :production do
+  gem 'puma'
+end
 
 # For the Prettize
 gem 'bootstrap-sass', '~> 3.3.6'
